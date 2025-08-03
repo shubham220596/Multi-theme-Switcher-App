@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 @layer base {
   .theme1 {
@@ -9,10 +9,10 @@
   }
 
   .theme2 {
-    @apply bg-gray-900 text-white font-serif;
+    @apply bg-gray-900 text-white font-serif font-bold;
   }
 
   .theme3 {
-    @apply bg-gradient-to-br from-yellow-100 to-pink-200 text-purple-900;
+    @apply bg-gradient-to-br from-yellow-100 to-pink-200 text-purple-900 font-pacifico;
   }
 }
