@@ -7,18 +7,14 @@ interface ThemeContextProps {
     setTheme: (theme: Theme) => void
 }
 
-const ThemeContext = createContext<ThemeContextProps>({theme: 'theme1', setTheme: () => { }});
+const ThemeContext = createContext<ThemeContextProps>({ theme: 'theme1', setTheme: () => { } });
 
 
-export const ThemeProvider: React.FC<{children: React.ReactNode }> = ({children}) => {
-    const [theme, setThemeState] = useState<Theme>('theme1');
-
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('theme') as Theme;
-        if (storedTheme) {
-            setThemeState(storedTheme);
-        }
-    },  []);
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    
+    const [theme, setThemeState] = useState<Theme>(() => {
+        return (localStorage.getItem('theme') as Theme) || 'theme1';
+    });
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
@@ -30,7 +26,7 @@ export const ThemeProvider: React.FC<{children: React.ReactNode }> = ({children}
     }
 
     return (
-        <ThemeContext.Provider value={{theme, setTheme}}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
             {children}
         </ThemeContext.Provider>
     )
